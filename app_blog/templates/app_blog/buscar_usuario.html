@@ -1,0 +1,19 @@
+{% extends 'app_blog/base.html' %}
+{% block main %}
+    <form action="/app_blog/buscar-usuario/" method="GET">
+        {% csrf_token %}
+        <table class="table table-striped">
+            {{search_form.as_table}}
+        </table>
+
+        <input type="submit" value="Buscar">
+    </form>
+
+    {% if error %}<p style="color:red">{{error}}</p>{% endif %}
+    
+    {% if usuario %}
+        <p> Usuario encontrado: <span style="font-weight: bold;">{{usuario.usuario}}</span></p>
+    {% else %}
+        <p> No se encontró ningún usuario</p>
+    {% endif %}
+{% endblock %}
